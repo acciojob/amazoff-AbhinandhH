@@ -29,7 +29,6 @@ public class OrderRepository {
 
     public String addPartner(String id){
         DeliveryPartner deliveryPartner = new DeliveryPartner(id);
-        deliveryPartner.setNumberOfOrders(getOrderCountByPartnerId(id));
         deliveryPartnerDb.put(id, deliveryPartner);
         return "Success";
     }
@@ -44,6 +43,7 @@ public class OrderRepository {
             orders = orderPartnerPairDb.get(partner);
         }
         orders.add(order);
+        partner.setNumberOfOrders(orders.size());
         orderPartnerPairDb.put(partner, orders);
         return "Success";
     }
@@ -60,8 +60,7 @@ public class OrderRepository {
 
     public Integer getOrderCountByPartnerId(String id){
         DeliveryPartner partner = deliveryPartnerDb.get(id);
-        int numberOfOrders = orderPartnerPairDb.get(partner).size();
-        return numberOfOrders;
+        return partner.getNumberOfOrders();
     }
 
     public List<String> getOrdersByPartnerId(String id){

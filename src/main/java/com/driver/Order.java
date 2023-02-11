@@ -4,7 +4,7 @@ public class Order {
 
     private String id;
     private int deliveryTime;
-    private String timeInString;
+    private String timeInString = null;
 
     public Order(String id, String deliveryTime) {
         this.id = id;
