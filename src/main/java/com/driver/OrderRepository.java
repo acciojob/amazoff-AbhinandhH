@@ -37,7 +37,7 @@ public class OrderRepository {
         Order order = orderDb.get(orderId);
         DeliveryPartner partner = deliveryPartnerDb.get(partnerId);
         List<Order> orders;
-        if(!orderPartnerPairDb.containsKey(partner)){
+        if(!orderPartnerPairDb.containsKey(partner)) {
             orders = new ArrayList<>();
         }else{
             orders = orderPartnerPairDb.get(partner);
